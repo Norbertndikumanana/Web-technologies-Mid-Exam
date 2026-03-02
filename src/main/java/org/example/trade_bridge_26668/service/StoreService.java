@@ -38,4 +38,11 @@ public class StoreService {
     public boolean existsByStoreName(String storeName) {
         return storeRepository.existsByStoreName(storeName);
     }
+    
+    @SuppressWarnings("null")
+    public boolean deleteStore(UUID id) {
+        if (id == null || !storeRepository.existsById(id)) return false;
+        storeRepository.deleteById(id);
+        return true;
+    }
 }
