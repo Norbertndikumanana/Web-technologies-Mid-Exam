@@ -50,4 +50,12 @@ public class ReviewController {
         Review review = reviewService.getReviewById(id);
         return review != null ? ResponseEntity.ok(review) : ResponseEntity.notFound().build();
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteReview(@PathVariable UUID id) {
+        boolean deleted = reviewService.deleteReview(id);
+        return deleted 
+            ? ResponseEntity.ok(new ApiResponse<>("Review deleted successfully", null))
+            : ResponseEntity.notFound().build();
+    }
 }
