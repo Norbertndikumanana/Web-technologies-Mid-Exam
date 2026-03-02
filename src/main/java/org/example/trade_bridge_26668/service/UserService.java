@@ -60,4 +60,12 @@ public class UserService {
     public List<User> getUsersByProvinceId(UUID provinceId) {
         return userRepository.findUsersByProvinceId(provinceId);
     }
+    
+    // Delete user
+    @SuppressWarnings("null")
+    public boolean deleteUser(UUID id) {
+        if (id == null || !userRepository.existsById(id)) return false;
+        userRepository.deleteById(id);
+        return true;
+    }
 }
