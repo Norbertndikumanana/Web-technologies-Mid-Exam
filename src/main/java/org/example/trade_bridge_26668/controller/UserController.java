@@ -79,4 +79,13 @@ public class UserController {
     public ResponseEntity<List<User>> getUsersByProvinceId(@PathVariable UUID provinceId) {
         return ResponseEntity.ok(userService.getUsersByProvinceId(provinceId));
     }
+    
+    // Delete user by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable UUID id) {
+        boolean deleted = userService.deleteUser(id);
+        return deleted 
+            ? ResponseEntity.ok(new ApiResponse<>("User deleted successfully", null))
+            : ResponseEntity.notFound().build();
+    }
 }
