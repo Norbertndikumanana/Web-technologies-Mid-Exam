@@ -35,4 +35,11 @@ public class ReviewService {
         if (id == null) return null;
         return reviewRepository.findById(id).orElse(null);
     }
+    
+    @SuppressWarnings("null")
+    public boolean deleteReview(UUID id) {
+        if (id == null || !reviewRepository.existsById(id)) return false;
+        reviewRepository.deleteById(id);
+        return true;
+    }
 }
