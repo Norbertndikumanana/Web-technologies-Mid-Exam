@@ -39,4 +39,11 @@ public class ProductService {
     public boolean existsByProductName(String productName) {
         return productRepository.existsByProductName(productName);
     }
+    
+    @SuppressWarnings("null")
+    public boolean deleteProduct(UUID id) {
+        if (id == null || !productRepository.existsById(id)) return false;
+        productRepository.deleteById(id);
+        return true;
+    }
 }
