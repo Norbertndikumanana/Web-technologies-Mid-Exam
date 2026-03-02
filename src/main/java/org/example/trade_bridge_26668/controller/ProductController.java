@@ -55,4 +55,12 @@ public class ProductController {
     public ResponseEntity<Boolean> existsByProductName(@PathVariable String productName) {
         return ResponseEntity.ok(productService.existsByProductName(productName));
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable UUID id) {
+        boolean deleted = productService.deleteProduct(id);
+        return deleted 
+            ? ResponseEntity.ok(new ApiResponse<>("Product deleted successfully", null))
+            : ResponseEntity.notFound().build();
+    }
 }
